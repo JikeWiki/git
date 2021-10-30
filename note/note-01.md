@@ -49,7 +49,7 @@ git clone https://gitee.com/kotlindev/test1.git
 克隆的同时可以也重命名，如下命令
 
 ```shell
-# 将远端 test1 仓库克隆到本地，同时明名为 demo
+# 将远端 test1 仓库克隆到本地，同时命名为 demo
 git clone https://gitee.com/kotlindev/test1.git demo1
 ```
 
@@ -126,7 +126,7 @@ git add main.cpp
 
 可以看到 `Changes to be committed`关键词，代表已经在 git 缓存区的文件。
 
-在实际开发工，当我们每次编码完成后，工作区可能创建了很多文件，我们可以使用以下命令将所有文件添加到 git 缓存区。
+在实际开发中，当我们每次编码完成后，工作区可能创建了很多文件，我们可以使用以下命令将所有文件添加到 git 缓存区。
 
 ```shell
 # .代表当前目录，以下命令是将工作区的所有文件添加 git 缓存区
