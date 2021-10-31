@@ -122,11 +122,22 @@ git pull <远程主机名> <远程分支名>:<本地分支名>
 ```
 
 **实例**
-取回 origin 主机的 master 分支，与本地的 develop 分支合并，如下指令
+
+让当前分支自动与唯一一个追踪分支进行合并
+
+```shell
+git pull
+```
+
+让远端的 master 分支，与本地的 develop 分支合并，如下指令
 
 ```shell
 git pull origin master:develop
 ```
+
+### 4. 本地分支的合并
+
+### 5. 代码冲突解决办法
 
 ## 三、标签
 
