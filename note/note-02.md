@@ -76,6 +76,31 @@ git checkout develop
 git branch -d feature/211031
 ```
 
+删除远端分支，为了演示删除远端分支，我们先将本地的`develop`分支提交到远端
+
+```shell
+# 将本地develop 分支提交到远端
+git push -u origin develop
+```
+
+如果远端没有 develop 分支将会自动创建，这里还有个参数是 `-u`，是`--set-upstream`的简写，意思是关联远端的分支。`--set-upstream`参数用于推送代码是进行分支关联，该参数与 `push`指令联用。而还有另一个类似参数`--set-upstream-to`用于直接设置关联，该参数与`branch`指令联用。如下指令
+
+```shell
+# 将远端 master 关联到 本地 develop分支
+git branch --set-upstream-to origin/master develop
+```
+
+以上指令将远端 `master` 分支关联到本地的 `develop` 分支，准确的说，如果我们说将本地 `develop` 分支追踪远端的 master 分支更合理。以上的设置只是个实例，在实际中，根据分支名称，本地分支应当与远端分支一一对应。
+
+将代码推送到远端之后，我们可执行远端分支删除操作，如下指令
+
+```shell
+# 删除远端的 develop 分支
+git push -u origin -d develop
+```
+
+> origin 关键词指的是一个指针，origin 指向的是本地的代码库托管在远端的仓库，可以说 origin 对应的是远端仓库。
+
 ### 3. 同步远端分支代码
 
 **相关指令**
