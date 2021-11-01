@@ -135,7 +135,30 @@ git pull
 git pull origin master:develop
 ```
 
-### 4. 本地分支的合并
+### 4. 分支的合并
+
+我们之后，一般情况下我们使用需要单独开一个分支来合并开发功能，开发完成之后需要合并到主分支，我们这里说的主分支是功能分之的来源分支，假如 feature 分支是从 develop 分支创建的，我们这里把 develop 分支叫做主分支。通过下图可以看到合并的过程
+
+![note-02-3.png](../img/note-02-3.png)
+
+每个节点代表一个提交，但功能分支在开发的时候，主分支也可能进行了好几次提交，最终，功能分之要合并到主分支上。上图的合并过程可以通过以下命令进行实现
+
+```shell
+# 切换到develop分支
+git checkout develop
+# 将feature分支合并到develop分支
+git merge feature
+```
+
+但大多时候我们需要另外的效果，如下图
+![note-02-4.png](../img/note-02-4.png)
+
+```
+# 使用rebase的方式将feature分支合并到develop分支
+git rebase feature
+```
+
+rebase 的方式不是直接合并，而是将 feature 分支变化的提交直接追加到主分支之上。使得两个分支的代码保持提交的记录是一致的。
 
 ### 5. 代码冲突解决办法
 
