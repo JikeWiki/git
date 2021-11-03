@@ -266,4 +266,87 @@ git merge develop
 
 ## 三、标签
 
-> 参考：[https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)
+git 可以对某次版本提交进行打标签，以表示重要或者是个里程碑。一般情况下，我们在代码即将发布的时候打一个标签，以表示一个稳定的版本。
+
+### 1. 查看标签
+
+使用以下指令查看已经存在的标签
+
+```shell
+git tag
+```
+
+这个指令会根据标签的字母顺序列出，如果只想查看某个关键字的分支，可以使用以下指令
+
+```shell
+# 查看 带有 "v1." 关键字的标签 星号（"*"）代表通配符号
+git tag -l "v1.*"
+```
+
+### 2. 打标签
+
+Git 支持两种标签：轻量标签（lightweight）与附注标签（annotated）。轻量标签很像一个不会改变的分支——它只是某个特定提交的引用。而附注标签是存储在 Git 数据库中的一个完整对象
+
+使用当前分支最新的提交创建标签轻量标签
+
+```shell
+git tag v1.0 -m "version 1.0"
+```
+
+使用以下指令附件标签
+
+```shell
+git tag -a v1.0 -m "version 2.0"
+```
+
+我们也可以对过去的提交进行打标签，使用以下指令查看过去的提交日志
+
+```shell
+git log --pretty=oneline
+```
+
+可以看到如下内容
+
+```shell
+pan@pandeMacBook-Pro test2 % git log --pretty=oneline
+667a8a76e994f9abe0624d5b14093af92de16ac2 (HEAD -> master, tag: v2.0, tag: v1.0, origin/master, develop) Merge branch 'develop'
+db8f7cf7cadcfbf357a93b4a1cab3ee25a86db85 main commit 2
+f9715e2aae67cf66b1d1348e872cb313f25ed514 develop commit 1
+ba8703bd5151796106af7fe55109c9d80ea8b27f first commit
+```
+
+假如我们需要对第一次版本提交打标签，可使用一下命令
+
+```shell
+# 使用提交id指定对应的提交
+git tag -a v3.0 ba8703bd5151796106af7fe55109c9d80ea8b27f -m "tag v3.0"
+```
+
+或者直接用提交 id 的缩写，如下指令
+
+```shell
+git tag -a v3.0 ba8703b -m "tag v3.1"
+```
+
+### 3. 将标签提交到服务器
+
+我们在使用`push`指令的时候，并不会直接将标签远端仓库，所以我们需要使用如下指令提交对应的标签
+
+```shell
+# 将 名为 v2.0 的标签提交到远端仓库
+git push origin v2.0
+```
+
+或者使用以下指令将所有的标签提交到远端仓库
+
+```shell
+git push origin --tag
+```
+
+## 四、总结
+
+通过这篇文章，我们把常见的 git 操作都演示了一遍。我们主要是以实践的方式进行了代码的合并、代码的提交、冲突的解决、标签的使用等。通过掌握这篇文章，几乎满足日常的开发需求了，实际上`git`的功能也不止这些，还有很多不常用的参数和功能我们这里没有介绍。如果你有兴趣，可以通过阅读官方文档的方式了解更多内容！
+
+感谢你的耐心阅读，欢迎订阅博主的博客，后续将更新更多的知识！
+
+> 参考：[https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)`·
