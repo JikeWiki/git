@@ -196,7 +196,7 @@ git commit -m "first commit"
 git checkout -b develop
 ```
 
-现在我们在 B 仓库中添加一下代码
+现在我们在`main.cpp`中添加以下代码
 
 ```cpp
 #include<iostream>
@@ -215,7 +215,54 @@ git add .
 git commit
 ```
 
-但是没有`-m`参数，所以 git 会自动打开其绑定的终端编辑器，让我们手动输信息。输好提交备注信息之后，我们推出编辑器即可。
+但是没有`-m`参数，所以 git 会自动打开其绑定的终端编辑器，让我们手动输信息。输好提交备注信息之后，我们退出编辑器即可。
+
+接着我们切换到 master 分支，如下指令
+
+```shell
+git checkout master
+```
+
+现在我们在 master 分支中对`main.cpp`文件添加另外一行代码，如下内容
+
+```cpp
+#include<stdlib.h>
+```
+
+再使用以下命令进行提交
+
+```shell
+git commit -a
+```
+
+此时，master 分支到了第 2 个版本，develop 也在第 2 个版本，并且他们同一行文件代码不一样。接下来我们使用合并的指令将 develop 分支合并到 master，如下命令
+
+```shell
+git merge develop
+```
+
+合并结果如下图岁所示
+
+![note-02-5.png](../img/note-02-5.png)
+
+可以看到提示信息的关键词`CONFLICT`，此时代码已经产生了 git 无法自动解决的冲突，合并之后的代码如下所示
+
+```cpp
+<<<<<<< HEAD
+#include<stdlib.h>
+=======
+#include<iostream>
+>>>>>>> develop
+```
+
+现在我们打开`main.cpp`文件，可以看到合并的代码中被分成了两栏，上面部分的关键词是`HEAD`，我们在前面说过 `HEAD`指针指向的是当前分支，即 master。而下面的部分是 develop 分支的代码，现在就需要我们手动解决冲突。假如我们两行代码都想要，那么删除掉 git 产生的临时行，同时保留两个分支的代码即可，最终修改如下：
+
+```cpp
+#include<stdlib.h>
+#include<iostream>
+```
+
+最后，我们再将修改之后的代码再次提交到版本库即可。
 
 ## 三、标签
 
